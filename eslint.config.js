@@ -4,17 +4,14 @@ import prettier from 'eslint-plugin-prettier';
 import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
+  js.configs.recommended,
   {
     files: ['**/*.{js,mjs,cjs}'],
-    plugins: {
-      js,
-      prettier,
-    },
-    extends: ['eslint:recommended', 'plugin:prettier/recommended'],
     languageOptions: {
       globals: {
         ...globals.browser,
         ...globals.node,
+        expect: 'readonly',
         browser: 'readonly',
         $: 'readonly',
         $$: 'readonly',
@@ -25,6 +22,9 @@ export default defineConfig([
         beforeEach: 'readonly',
         afterEach: 'readonly',
       },
+    },
+    plugins: {
+      prettier,
     },
     rules: {
       'prettier/prettier': [
